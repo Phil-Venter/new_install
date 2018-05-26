@@ -1,11 +1,4 @@
 #!/bin/sh
-#update, upgrade, dist-uypgrade, autoremove, autoclean on run
-sudo apt-get update
-sudo apt-get upgrade -y
-sudo apt-get dist-upgrade -y
-sudo apt-get autoremove -y
-sudo apt-get autoclean -y
-
 #add bash aliases file to bashrc if it has it already carry on
 if grep -q ".bash_aliases" ~/.bashrc; then
 	echo ".bash_aliases exists in .bashrc"
@@ -298,10 +291,12 @@ else
 fi
 
 #add sublime source for upgrading
-wget -qO - https://download.sublimetext.com/sublimehq-pub.gpg | sudo apt-key add -
-echo "deb https://download.sublimetext.com/ apt/stable/" | sudo tee /etc/apt/sources.list.d/sublime-text.list
+if [ ! -f /etc/apt/sources.list.d/sublime-text.list ]; then
+	wget -qO - https://download.sublimetext.com/sublimehq-pub.gpg | sudo apt-key add -
+	echo "deb https://download.sublimetext.com/ apt/stable/" | sudo tee /etc/apt/sources.list.d/sublime-text.list
+fi
 
-#update, upgrade, dist-uypgrade, autoremove, autoclean to end it
+#update, upgrade, dist-uypgrade, autoremove, autoclean
 sudo apt-get update
 sudo apt-get upgrade -y
 sudo apt-get dist-upgrade -y
