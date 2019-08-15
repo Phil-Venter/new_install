@@ -251,6 +251,13 @@ if grep -q "alias su='sudo -i'" ~/.bashrc; then
 else
 	echo "alias su exists"
 fi
+#add "alias fuck='sudo $(fc -ln -1)'"
+if grep -q "alias fuck='sudo $(fc -ln -1)'" ~/.bashrc; then
+	echo "alias fuck='sudo $(fc -ln -1)'" >> ~/.bash_aliases
+	echo "added alias fuck"
+else
+	echo "alias fuck exists"
+fi
 #add "alias reboot='sudo /sbin/reboot'"
 if grep -q "alias reboot='sudo /sbin/reboot'" ~/.bashrc; then
 	echo "alias reboot='sudo /sbin/reboot'" >> ~/.bash_aliases
